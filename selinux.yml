@@ -1,0 +1,10 @@
+---
+ - hosts: localhost
+   
+   tasks:
+     - name: Change SELinux mode to enforcing
+       lineinfile:
+         path: /etc/selinux/config
+         regexp: '^SELINUX='
+         line: 'SELINUX=enforcing'
+   
