@@ -1,0 +1,26 @@
+---
+- hosts: abc
+  remote_user: root
+   
+  tasks:
+  - name: Install apaches latest version
+    yum:
+      name: httpd
+      state: present
+ 
+  - name: Httpd is running
+    service:
+      name: httpd
+      state: started
+
+  - name: Open Port 
+    firewalld:
+      service: httpd
+      permanent: true
+      state: enabled
+
+  - name: Restart the firewalld services to load in the firewall changes
+    service:
+      name:  firewalld
+      state: restarted
+ 
